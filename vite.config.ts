@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
+  base: '/wumm/', // Add this line - it should match your repository name
   build: {
     outDir: 'dist',
     minify: 'terser',
@@ -17,4 +18,4 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
-}); 
+});
