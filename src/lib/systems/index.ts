@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import { query, World } from "./ecs";
+import { query, World } from "../ecs";
 
 export const movementSystem = (world: World, delta: number) =>
   produce(world, (draft) => {
@@ -13,8 +13,10 @@ export const movementSystem = (world: World, delta: number) =>
     }
   });
 
-export const renderSystem = (world: World, _: number) => 
-  query(world, ["position", "renderable"]).forEach((entity) => {
-    const pos = world.components.position[entity];
-    world.components.renderable[entity].position.set(pos.x, pos.y, pos.z);
+export const renderSystem = (world: World, _: number) =>
+  produce(world, (draft) => {
+    query(draft, ["position", "renderable"]).forEach((entity) => {
+      const pos = draft.components.position[entity];
+      draft.components.renderable[entity].position.set(pos.x, pos.y, pos.z);
+    });
   });

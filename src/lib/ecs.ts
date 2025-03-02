@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import { Velocity, Position } from "./components";
+import { Velocity, Position, Input } from "./components";
 import { Mesh } from "three";
 
 export type Entity = number;
@@ -8,6 +8,7 @@ export interface Components {
   position: Record<Entity, Position>;
   velocity: Record<Entity, Velocity>;
   renderable: Record<Entity, Mesh>;
+  input: Record<Entity, Input>;
 }
 
 export interface World {
@@ -22,6 +23,7 @@ export const createWorld = (): World => {
       position: {},
       velocity: {},
       renderable: {},
+      input: {},
     },
   };
 };

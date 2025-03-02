@@ -15,3 +15,7 @@ export interface Velocity {
 export interface Renderable {
   mesh: THREE.Mesh;
 }
+
+export interface Input {
+  speed: number
+}
