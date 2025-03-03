@@ -4,11 +4,13 @@ A project by Romantic Draculla.
 
 ## Features
 
-- Simple game loop implementation with canvas rendering
+- 3D graphics using Three.js
+- Entity Component System (ECS) architecture for game logic
+- Immutable state management with Immer
+- Keyboard input handling for interactive elements
 - TypeScript for type safety and improved developer experience
 - Vite for fast development and optimized builds
 - GitHub Actions for CI/CD and GitHub Pages deployment
-- Minimal folder structure for assets and game code
 - ESLint for code quality
 - Vitest for testing
 
@@ -18,11 +20,14 @@ A project by Romantic Draculla.
 /
 ├── src/                # Source files
 │   ├── assets/         # Game assets (images, sounds, etc.)
-│   ├── levels/         # Level definitions
+│   ├── lib/            # Core game engine components
+│   │   ├── systems/    # ECS systems (movement, rendering, input)
+│   │   ├── ecs.ts      # Entity Component System implementation
+│   │   └── components.ts # Component definitions
 │   ├── utils/          # Utility functions
-│   ├── game.ts         # Main game class
-│   ├── main.ts         # Entry point
-│   └── style.css       # Global styles
+│   ├── game.ts         # Main game setup and loop
+│   ├── style.css       # Global styles
+│   └── dummy.test.ts   # Example test file
 ├── public/             # Static assets served as-is
 ├── .github/workflows/  # GitHub Actions CI/CD
 ├── index.html          # HTML entry point
@@ -30,6 +35,19 @@ A project by Romantic Draculla.
 ├── tsconfig.json       # TypeScript configuration
 └── package.json        # Project dependencies and scripts
 ```
+
+## Architecture
+
+The application is built using an Entity Component System (ECS) architecture:
+
+- **Entities**: Game objects represented by unique IDs
+- **Components**: Data structures attached to entities (Position, Velocity, etc.)
+- **Systems**: Logic that operates on entities with specific component combinations
+
+The game loop processes these systems in sequence each frame:
+1. Input System - Handles keyboard controls
+2. Movement System - Updates positions based on velocities
+3. Render System - Updates Three.js meshes based on entity positions
 
 ## Getting Started
 
@@ -101,19 +119,13 @@ You can also manually deploy using:
 pnpm deploy
 ```
 
-## Customizing Your Application
+## Controls
 
-### Adding Assets
-
-Place your assets in the `src/assets/` directory. You can import them directly in your TypeScript files.
-
-### Creating Levels
-
-Use the `src/levels/` directory to define your levels, maps, or stages.
-
-### Utilities
-
-Common helper functions can be placed in the `src/utils/` directory for reuse across your application.
+Use the arrow keys to move the cube:
+- Up Arrow: Move forward
+- Down Arrow: Move backward  
+- Left Arrow: Move left
+- Right Arrow: Move right
 
 ## License
 
